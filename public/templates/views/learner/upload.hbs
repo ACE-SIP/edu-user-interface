@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.98.0">
+    <title>Education Credential System</title>
+    <script src="../../../js/jquery-3.6.0.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @media (min-width: 768px) {
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: deepskyblue;
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../../../css/app/dashboard.css" rel="stylesheet">
+</head>
+<body>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Education Credential System</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search"
+           aria-label="Search">
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#">
+                Welcome, {{name}} ！
+            </a>
+        </div>
+    </div>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#">Sign out</a>
+        </div>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row vertical-center-row">
+        {{>sidbar}}
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Upload Credentials</h1>
+            </div>
+            <div class="bd-cheatsheet container-fluid bg-body">
+                <section id="forms">
+                    <article class="my-3" id="sizing">
+                        <div>
+                            <div class="bd-example-snippet bd-code-snippet">
+                                <form class="bd-example" id="fileForm">
+                                    <div class="input-group mb-3">
+                                        <input type="file" id="files" class="form-control form-control-lg"
+                                               aria-label="Large file input example">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <select class="form-select" id="uni_selector" aria-label="Default select example">
+                                            <option value="">Select an Issuer</option>
+                                            {{#each issuers }}
+                                                <option id="{{this._id.$oid}}" value="{{this.public_key.$binary.base64}}">{{this.username}} - {{this.email}}
+                                                </option>
+                                            {{/each}}
+                                        </select>
+                                        <input type="text" id="uni_pk" value="" class="form-control disabled" >
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon2">File Signature</span>
+                                        <input type="text" class="form-control" id="file_signature" placeholder="File Signature" aria-label="File Signature" aria-describedby="basic-addon2">
+                                    </div>
+                                    <button class="btn btn-success" value="{{email}}" type='submit'>Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="../../../js/app/fileUpload.js"></script>
+</body>
+</html>
